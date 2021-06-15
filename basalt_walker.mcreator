@@ -1,0 +1,558 @@
+{
+  "id_map": {},
+  "mod_elements": [
+    {
+      "name": "BasaltWalker",
+      "type": "enchantment",
+      "sortid": 1,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "basalt_walker"
+    },
+    {
+      "name": "BasaltWalkerCreateSoftBasalt",
+      "type": "procedure",
+      "sortid": 2,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "basalt_walker_create_soft_basalt",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SoftBasalt",
+      "type": "block",
+      "sortid": 3,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "soft_basalt"
+    },
+    {
+      "name": "MeltingSoftBasalt1",
+      "type": "block",
+      "sortid": 4,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "melting_soft_basalt_1"
+    },
+    {
+      "name": "MeltingSoftBasalt2",
+      "type": "block",
+      "sortid": 5,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "melting_soft_basalt_2"
+    },
+    {
+      "name": "MeltingSoftBasalt3",
+      "type": "block",
+      "sortid": 6,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "melting_soft_basalt_3"
+    },
+    {
+      "name": "SoftBasaltUpdateTick",
+      "type": "procedure",
+      "sortid": 7,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "soft_basalt_update_tick",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "MeltingSoftBasalt1UpdateTick",
+      "type": "procedure",
+      "sortid": 8,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "melting_soft_basalt_1_update_tick",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "MeltingSoftBasalt2UpdateTick",
+      "type": "procedure",
+      "sortid": 9,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "melting_soft_basalt_2_update_tick",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "MeltingSoftBasalt3UpdateTick",
+      "type": "procedure",
+      "sortid": 10,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "melting_soft_basalt_3_update_tick",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SoftBasaltBlockAdded",
+      "type": "procedure",
+      "sortid": 11,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "soft_basalt_block_added",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "MeltingSoftBasalt1BlockAdded",
+      "type": "procedure",
+      "sortid": 12,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "melting_soft_basalt_1_block_added",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "MeltingSoftBasalt2BlockAdded",
+      "type": "procedure",
+      "sortid": 13,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "melting_soft_basalt_2_block_added",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "MeltingSoftBasalt3BlockAdded",
+      "type": "procedure",
+      "sortid": 14,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "melting_soft_basalt_3_block_added",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SoftBasaltBlockDestroyedByPlayer",
+      "type": "procedure",
+      "sortid": 15,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "soft_basalt_block_destroyed_by_player",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "MeltingSoftBasalt1BlockDestroyedByPlayer",
+      "type": "procedure",
+      "sortid": 16,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "melting_soft_basalt_1_block_destroyed_by_player",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "MeltingSoftBasalt2BlockDestroyedByPlayer",
+      "type": "procedure",
+      "sortid": 17,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "melting_soft_basalt_2_block_destroyed_by_player",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "MeltingSoftBasalt3BlockDestroyedByPlayer",
+      "type": "procedure",
+      "sortid": 18,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "melting_soft_basalt_3_block_destroyed_by_player",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BasaltWalkerReplaceMeltingSoftBasalt",
+      "type": "procedure",
+      "sortid": 20,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "basalt_walker_replace_melting_soft_basalt",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    }
+  ],
+  "variable_elements": [],
+  "sound_elements": [],
+  "language_map": {
+    "zh_tw": {
+      "block.basalt_walker.melting_soft_basalt_3": "‹õŸ|–˛Œ‰—“",
+      "block.basalt_walker.melting_soft_basalt_2": "‹õŸ|–˛Œ‰—“",
+      "block.basalt_walker.melting_soft_basalt_1": "‹õŸ|–˛Œ‰—“",
+      "enchantment.basalt_walker.basalt_walker": "–˛Œ‰—“––’ﬂ",
+      "block.basalt_walker.soft_basalt": "‹õŸ|–˛Œ‰—“"
+    },
+    "ko_kr": {
+      "block.basalt_walker.melting_soft_basalt_3": "???? ???",
+      "block.basalt_walker.melting_soft_basalt_2": "???? ???",
+      "block.basalt_walker.melting_soft_basalt_1": "???? ???",
+      "enchantment.basalt_walker.basalt_walker": "??? ??",
+      "block.basalt_walker.soft_basalt": "???? ???"
+    },
+    "en_us": {
+      "block.basalt_walker.melting_soft_basalt_3": "Soft Basalt",
+      "block.basalt_walker.melting_soft_basalt_2": "Soft Basalt",
+      "block.basalt_walker.melting_soft_basalt_1": "Soft Basalt",
+      "enchantment.basalt_walker.basalt_walker": "Basalt Walker",
+      "block.basalt_walker.soft_basalt": "Soft Basalt"
+    },
+    "zh_cn": {
+      "block.basalt_walker.melting_soft_basalt_3": "»Ì÷ –˛Œ‰—“",
+      "block.basalt_walker.melting_soft_basalt_2": "»Ì÷ –˛Œ‰—“",
+      "block.basalt_walker.melting_soft_basalt_1": "»Ì÷ –˛Œ‰—“",
+      "enchantment.basalt_walker.basalt_walker": "–˛Œ‰—“––’ﬂ",
+      "block.basalt_walker.soft_basalt": "»Ì÷ –˛Œ‰—“"
+    },
+    "ja_jp": {
+      "block.basalt_walker.melting_soft_basalt_3": "»·§È§´§§–˛Œ‰—“",
+      "block.basalt_walker.melting_soft_basalt_2": "»·§È§´§§–˛Œ‰—“",
+      "block.basalt_walker.melting_soft_basalt_1": "»·§È§´§§–˛Œ‰—“",
+      "enchantment.basalt_walker.basalt_walker": "öÍ∂…§Í",
+      "block.basalt_walker.soft_basalt": "»·§È§´§§–˛Œ‰—“"
+    },
+    "fr_fr": {
+      "block.basalt_walker.melting_soft_basalt_3": "Basalte mou",
+      "block.basalt_walker.melting_soft_basalt_2": "Basalte mou",
+      "block.basalt_walker.melting_soft_basalt_1": "Basalte mou",
+      "enchantment.basalt_walker.basalt_walker": "Marcheur de basalte",
+      "block.basalt_walker.soft_basalt": "Basalte mou"
+    },
+    "de_de": {
+      "block.basalt_walker.melting_soft_basalt_3": "Weicher Basalt",
+      "block.basalt_walker.melting_soft_basalt_2": "Weicher Basalt",
+      "block.basalt_walker.melting_soft_basalt_1": "Weicher Basalt",
+      "enchantment.basalt_walker.basalt_walker": "Basalt Walker",
+      "block.basalt_walker.soft_basalt": "Weicher Basalt"
+    }
+  },
+  "foldersRoot": {
+    "name": "~",
+    "children": []
+  },
+  "workspaceSettings": {
+    "modid": "basalt_walker",
+    "modName": "Basalt Walker",
+    "version": "1.2",
+    "description": "New enchantment allows you to walk on lava.",
+    "author": "Hashtatg233",
+    "websiteURL": "https://www.curseforge.com/minecraft/mc-mods/basalt-walker",
+    "license": "Creative Commons Attribution-NonCommercial 3.0",
+    "disableForgeVersionCheck": true,
+    "serverSideOnly": false,
+    "modPicture": "logo",
+    "requiredMods": [],
+    "dependencies": [],
+    "dependants": [],
+    "mcreatorDependencies": [],
+    "currentGenerator": "forge-1.16.5",
+    "credits": "Hashtag233",
+    "modElementsPackage": "basaltwalker",
+    "lockBaseModFiles": false
+  },
+  "mcreatorVersion": 202100116710
+}

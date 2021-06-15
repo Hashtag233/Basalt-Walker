@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "basalt_walker:blocks/basalttop",
+    "up": "basalt_walker:blocks/basalttop",
+    "north": "basalt_walker:blocks/basaltside",
+    "east": "basalt_walker:blocks/basaltside",
+    "south": "basalt_walker:blocks/basaltside",
+    "west": "basalt_walker:blocks/basaltside",
+    "particle": "basalt_walker:blocks/basalttop"
+  }
+}

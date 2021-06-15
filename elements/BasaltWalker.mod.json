@@ -1,0 +1,17 @@
+{
+  "_fv": 18,
+  "_type": "enchantment",
+  "definition": {
+    "name": "Basalt Walker",
+    "type": "ARMOR_FEET",
+    "rarity": "RARE",
+    "minLevel": 1,
+    "maxLevel": 2,
+    "damageModifier": 0,
+    "compatibleEnchantments": [],
+    "compatibleItems": [],
+    "isTreasureEnchantment": true,
+    "isCurse": false,
+    "isAllowedOnBooks": true
+  }
+}
