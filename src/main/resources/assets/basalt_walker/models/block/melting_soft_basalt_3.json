@@ -1,12 +1,12 @@
 {
   "parent": "block/cube",
   "textures": {
-    "down": "basalt_walker:blocks/basalttop3",
-    "up": "basalt_walker:blocks/basalttop3",
-    "north": "basalt_walker:blocks/basaltside3",
-    "east": "basalt_walker:blocks/basaltside3",
-    "south": "basalt_walker:blocks/basaltside3",
-    "west": "basalt_walker:blocks/basaltside3",
-    "particle": "basalt_walker:blocks/basalttop3"
+    "down": "basalt_walker:blocks/soft_basalt_3_top",
+    "up": "basalt_walker:blocks/soft_basalt_3_top",
+    "north": "basalt_walker:blocks/soft_basalt_3_side",
+    "east": "basalt_walker:blocks/soft_basalt_3_side",
+    "south": "basalt_walker:blocks/soft_basalt_3_side",
+    "west": "basalt_walker:blocks/soft_basalt_3_side",
+    "particle": "basalt_walker:blocks/soft_basalt_3_top"
   }
 }
