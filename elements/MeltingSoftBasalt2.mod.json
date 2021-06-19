@@ -102,13 +102,13 @@
     "fluidCapacity": 8000,
     "fluidRestrictions": [],
     "onBlockAdded": {
-      "name": "MeltingSoftBasalt2BlockAdded"
+      "name": "SoftBasaltBlockAdded"
     },
     "onTickUpdate": {
       "name": "MeltingSoftBasalt2UpdateTick"
     },
     "onDestroyedByPlayer": {
-      "name": "MeltingSoftBasalt2BlockDestroyedByPlayer"
+      "name": "SoftBasaltBlockDestroyedByPlayer"
     },
     "spawnWorldTypes": [],
     "restrictionBiomes": [],

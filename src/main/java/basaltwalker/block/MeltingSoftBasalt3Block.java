@@ -51,9 +51,9 @@ import java.util.List;
 import java.util.HashMap;
 import java.util.Collections;
 
+import basaltwalker.procedures.SoftBasaltBlockDestroyedByPlayerProcedure;
+import basaltwalker.procedures.SoftBasaltBlockAddedProcedure;
 import basaltwalker.procedures.MeltingSoftBasalt3UpdateTickProcedure;
-import basaltwalker.procedures.MeltingSoftBasalt3BlockDestroyedByPlayerProcedure;
-import basaltwalker.procedures.MeltingSoftBasalt3BlockAddedProcedure;
 
 import basaltwalker.BasaltWalkerModElements;
 
@@ -108,7 +108,7 @@ public class MeltingSoftBasalt3Block extends BasaltWalkerModElements.ModElement 
 				$_dependencies.put("y", y);
 				$_dependencies.put("z", z);
 				$_dependencies.put("world", world);
-				MeltingSoftBasalt3BlockAddedProcedure.executeProcedure($_dependencies);
+				SoftBasaltBlockAddedProcedure.executeProcedure($_dependencies);
 			}
 		}
 
@@ -142,7 +142,7 @@ public class MeltingSoftBasalt3Block extends BasaltWalkerModElements.ModElement 
 				$_dependencies.put("y", y);
 				$_dependencies.put("z", z);
 				$_dependencies.put("world", world);
-				MeltingSoftBasalt3BlockDestroyedByPlayerProcedure.executeProcedure($_dependencies);
+				SoftBasaltBlockDestroyedByPlayerProcedure.executeProcedure($_dependencies);
 			}
 			return retval;
 		}
