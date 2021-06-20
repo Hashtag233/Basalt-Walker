@@ -351,9 +351,9 @@
   "workspaceSettings": {
     "modid": "basalt_walker",
     "modName": "Basalt Walker",
-    "version": "1.2.1",
+    "version": "1.2.2",
     "description": "New enchantment allows you to walk on lava.",
-    "author": "Hashtatg233",
+    "author": "Hashtag233",
     "websiteURL": "https://www.curseforge.com/minecraft/mc-mods/basalt-walker",
     "license": "Creative Commons Attribution-NonCommercial 3.0",
     "disableForgeVersionCheck": true,
