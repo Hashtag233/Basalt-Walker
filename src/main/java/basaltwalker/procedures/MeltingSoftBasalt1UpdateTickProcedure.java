@@ -11,16 +11,9 @@ import java.util.Map;
 
 import basaltwalker.block.MeltingSoftBasalt2Block;
 
-import basaltwalker.BasaltWalkerModElements;
-
 import basaltwalker.BasaltWalkerMod;
 
-@BasaltWalkerModElements.ModElement.Tag
-public class MeltingSoftBasalt1UpdateTickProcedure extends BasaltWalkerModElements.ModElement {
-	public MeltingSoftBasalt1UpdateTickProcedure(BasaltWalkerModElements instance) {
-		super(instance, 8);
-	}
-
+public class MeltingSoftBasalt1UpdateTickProcedure {
 	public static void executeProcedure(Map<String, Object> dependencies) {
 		if (dependencies.get("x") == null) {
 			if (!dependencies.containsKey("x"))
@@ -46,11 +39,10 @@ public class MeltingSoftBasalt1UpdateTickProcedure extends BasaltWalkerModElemen
 		double y = dependencies.get("y") instanceof Integer ? (int) dependencies.get("y") : (double) dependencies.get("y");
 		double z = dependencies.get("z") instanceof Integer ? (int) dependencies.get("z") : (double) dependencies.get("z");
 		IWorld world = (IWorld) dependencies.get("world");
-		if (((((world.getBlockState(new BlockPos((int) (x + 1), (int) y, (int) z))).getBlock() == Blocks.LAVA.getDefaultState().getBlock())
-				&& ((world.getBlockState(new BlockPos((int) (x - 1), (int) y, (int) z))).getBlock() == Blocks.LAVA.getDefaultState().getBlock()))
-				&& (((world.getBlockState(new BlockPos((int) x, (int) y, (int) (z + 1)))).getBlock() == Blocks.LAVA.getDefaultState().getBlock())
-						&& ((world.getBlockState(new BlockPos((int) x, (int) y, (int) (z - 1)))).getBlock() == Blocks.LAVA.getDefaultState()
-								.getBlock())))) {
+		if (((((world.getBlockState(new BlockPos((int) (x + 1), (int) y, (int) z))).getBlock() == Blocks.LAVA)
+				&& ((world.getBlockState(new BlockPos((int) (x - 1), (int) y, (int) z))).getBlock() == Blocks.LAVA))
+				&& (((world.getBlockState(new BlockPos((int) x, (int) y, (int) (z + 1)))).getBlock() == Blocks.LAVA)
+						&& ((world.getBlockState(new BlockPos((int) x, (int) y, (int) (z - 1)))).getBlock() == Blocks.LAVA)))) {
 			world.setBlockState(new BlockPos((int) x, (int) y, (int) z), Blocks.LAVA.getDefaultState(), 3);
 		} else {
 			if (!world.isRemote()) {

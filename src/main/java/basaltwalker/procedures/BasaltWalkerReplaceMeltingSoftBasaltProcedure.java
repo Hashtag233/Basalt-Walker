@@ -1,8 +1,8 @@
 package basaltwalker.procedures;
 
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.common.MinecraftForge;
 
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.World;
@@ -23,17 +23,30 @@ import java.util.HashMap;
 
 import basaltwalker.enchantment.BasaltWalkerEnchantment;
 
-import basaltwalker.BasaltWalkerModElements;
-
 import basaltwalker.BasaltWalkerMod;
 
-@BasaltWalkerModElements.ModElement.Tag
-public class BasaltWalkerReplaceMeltingSoftBasaltProcedure extends BasaltWalkerModElements.ModElement {
-	public BasaltWalkerReplaceMeltingSoftBasaltProcedure(BasaltWalkerModElements instance) {
-		super(instance, 20);
-		MinecraftForge.EVENT_BUS.register(this);
+public class BasaltWalkerReplaceMeltingSoftBasaltProcedure {
+	@Mod.EventBusSubscriber
+	private static class GlobalTrigger {
+		@SubscribeEvent
+		public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+			if (event.phase == TickEvent.Phase.END) {
+				Entity entity = event.player;
+				World world = entity.world;
+				double i = entity.getPosX();
+				double j = entity.getPosY();
+				double k = entity.getPosZ();
+				Map<String, Object> dependencies = new HashMap<>();
+				dependencies.put("x", i);
+				dependencies.put("y", j);
+				dependencies.put("z", k);
+				dependencies.put("world", world);
+				dependencies.put("entity", entity);
+				dependencies.put("event", event);
+				executeProcedure(dependencies);
+			}
+		}
 	}
-
 	public static void executeProcedure(Map<String, Object> dependencies) {
 		if (dependencies.get("entity") == null) {
 			if (!dependencies.containsKey("entity"))
@@ -75,25 +88,6 @@ public class BasaltWalkerReplaceMeltingSoftBasaltProcedure extends BasaltWalkerM
 								new StringTextComponent(""), ((World) world).getServer(), null).withFeedbackDisabled(),
 						"fill ~-1 ~-1 ~-1 ~1 ~-1 ~1 basalt_walker:soft_basalt replace basalt_walker:melting_soft_basalt_1");
 			}
-		}
-	}
-
-	@SubscribeEvent
-	public void onPlayerTick(TickEvent.PlayerTickEvent event) {
-		if (event.phase == TickEvent.Phase.END) {
-			Entity entity = event.player;
-			World world = entity.world;
-			double i = entity.getPosX();
-			double j = entity.getPosY();
-			double k = entity.getPosZ();
-			Map<String, Object> dependencies = new HashMap<>();
-			dependencies.put("x", i);
-			dependencies.put("y", j);
-			dependencies.put("z", k);
-			dependencies.put("world", world);
-			dependencies.put("entity", entity);
-			dependencies.put("event", event);
-			this.executeProcedure(dependencies);
 		}
 	}
 }

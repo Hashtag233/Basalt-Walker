@@ -11,16 +11,9 @@ import net.minecraft.block.Blocks;
 
 import java.util.Map;
 
-import basaltwalker.BasaltWalkerModElements;
-
 import basaltwalker.BasaltWalkerMod;
 
-@BasaltWalkerModElements.ModElement.Tag
-public class SoftBasaltBlockDestroyedByPlayerProcedure extends BasaltWalkerModElements.ModElement {
-	public SoftBasaltBlockDestroyedByPlayerProcedure(BasaltWalkerModElements instance) {
-		super(instance, 15);
-	}
-
+public class SoftBasaltBlockDestroyedByPlayerProcedure {
 	public static void executeProcedure(Map<String, Object> dependencies) {
 		if (dependencies.get("entity") == null) {
 			if (!dependencies.containsKey("entity"))

@@ -1,8 +1,8 @@
 package basaltwalker.procedures;
 
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.common.MinecraftForge;
 
 import net.minecraft.world.World;
 import net.minecraft.world.IWorld;
@@ -21,17 +21,30 @@ import basaltwalker.enchantment.BasaltWalkerEnchantment;
 
 import basaltwalker.block.SoftBasaltBlock;
 
-import basaltwalker.BasaltWalkerModElements;
-
 import basaltwalker.BasaltWalkerMod;
 
-@BasaltWalkerModElements.ModElement.Tag
-public class BasaltWalkerCreateSoftBasaltProcedure extends BasaltWalkerModElements.ModElement {
-	public BasaltWalkerCreateSoftBasaltProcedure(BasaltWalkerModElements instance) {
-		super(instance, 2);
-		MinecraftForge.EVENT_BUS.register(this);
+public class BasaltWalkerCreateSoftBasaltProcedure {
+	@Mod.EventBusSubscriber
+	private static class GlobalTrigger {
+		@SubscribeEvent
+		public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+			if (event.phase == TickEvent.Phase.END) {
+				Entity entity = event.player;
+				World world = entity.world;
+				double i = entity.getPosX();
+				double j = entity.getPosY();
+				double k = entity.getPosZ();
+				Map<String, Object> dependencies = new HashMap<>();
+				dependencies.put("x", i);
+				dependencies.put("y", j);
+				dependencies.put("z", k);
+				dependencies.put("world", world);
+				dependencies.put("entity", entity);
+				dependencies.put("event", event);
+				executeProcedure(dependencies);
+			}
+		}
 	}
-
 	public static void executeProcedure(Map<String, Object> dependencies) {
 		if (dependencies.get("entity") == null) {
 			if (!dependencies.containsKey("entity"))
@@ -76,44 +89,25 @@ public class BasaltWalkerCreateSoftBasaltProcedure extends BasaltWalkerModElemen
 									.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 0))
 							: ItemStack.EMPTY)))
 					+ 2);
-			sx = (double) (0 - (radium));
-			for (int index0 = 0; index0 < (int) ((((radium) * 2) + 1)); index0++) {
-				sz = (double) (0 - (radium));
-				for (int index1 = 0; index1 < (int) ((((radium) * 2) + 1)); index1++) {
-					if (((((sx) * (sx)) + ((sz) * (sz))) <= ((radium) * (radium)))) {
-						if (((((world.getBlockState(new BlockPos((int) ((x - 0.5) + (sx)), (int) (y - 1), (int) ((z - 0.5) + (sz)))))
-								.getBlock() == Blocks.LAVA.getDefaultState().getBlock())
-								&& ((world.getBlockState(new BlockPos((int) ((x - 0.5) + (sx)), (int) (y - 1), (int) ((z - 0.5) + (sz)))))
-										.getFluidState().isSource()))
-								&& ((world.getBlockState(new BlockPos((int) ((x - 0.5) + (sx)), (int) y, (int) ((z - 0.5) + (sz)))))
-										.getBlock() == Blocks.AIR.getDefaultState().getBlock()))) {
-							world.setBlockState(new BlockPos((int) ((x - 0.5) + (sx)), (int) (y - 1), (int) ((z - 0.5) + (sz))),
+			sx = (double) (0 - radium);
+			for (int index0 = 0; index0 < (int) (((radium * 2) + 1)); index0++) {
+				sz = (double) (0 - radium);
+				for (int index1 = 0; index1 < (int) (((radium * 2) + 1)); index1++) {
+					if ((((sx * sx) + (sz * sz)) <= (radium * radium))) {
+						if (((((world.getBlockState(new BlockPos((int) ((x - 0.5) + sx), (int) (y - 1), (int) ((z - 0.5) + sz))))
+								.getBlock() == Blocks.LAVA)
+								&& ((world.getBlockState(new BlockPos((int) ((x - 0.5) + sx), (int) (y - 1), (int) ((z - 0.5) + sz)))).getFluidState()
+										.isSource()))
+								&& ((world.getBlockState(new BlockPos((int) ((x - 0.5) + sx), (int) y, (int) ((z - 0.5) + sz))))
+										.getBlock() == Blocks.AIR))) {
+							world.setBlockState(new BlockPos((int) ((x - 0.5) + sx), (int) (y - 1), (int) ((z - 0.5) + sz)),
 									SoftBasaltBlock.block.getDefaultState(), 3);
 						}
 					}
-					sz = (double) ((sz) + 1);
+					sz = (double) (sz + 1);
 				}
-				sx = (double) ((sx) + 1);
+				sx = (double) (sx + 1);
 			}
-		}
-	}
-
-	@SubscribeEvent
-	public void onPlayerTick(TickEvent.PlayerTickEvent event) {
-		if (event.phase == TickEvent.Phase.END) {
-			Entity entity = event.player;
-			World world = entity.world;
-			double i = entity.getPosX();
-			double j = entity.getPosY();
-			double k = entity.getPosZ();
-			Map<String, Object> dependencies = new HashMap<>();
-			dependencies.put("x", i);
-			dependencies.put("y", j);
-			dependencies.put("z", k);
-			dependencies.put("world", world);
-			dependencies.put("entity", entity);
-			dependencies.put("event", event);
-			this.executeProcedure(dependencies);
 		}
 	}
 }

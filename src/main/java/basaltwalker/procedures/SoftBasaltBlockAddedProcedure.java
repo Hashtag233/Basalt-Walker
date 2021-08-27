@@ -8,16 +8,9 @@ import net.minecraft.block.BlockState;
 
 import java.util.Map;
 
-import basaltwalker.BasaltWalkerModElements;
-
 import basaltwalker.BasaltWalkerMod;
 
-@BasaltWalkerModElements.ModElement.Tag
-public class SoftBasaltBlockAddedProcedure extends BasaltWalkerModElements.ModElement {
-	public SoftBasaltBlockAddedProcedure(BasaltWalkerModElements instance) {
-		super(instance, 11);
-	}
-
+public class SoftBasaltBlockAddedProcedure {
 	public static void executeProcedure(Map<String, Object> dependencies) {
 		if (dependencies.get("x") == null) {
 			if (!dependencies.containsKey("x"))
