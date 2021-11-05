@@ -1,20 +1,20 @@
 package basaltwalker.procedures;
 
-import net.minecraft.world.IWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.item.ItemStack;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.block.Blocks;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.core.BlockPos;
 
 import java.util.Map;
 
 import basaltwalker.BasaltWalkerMod;
 
 public class SoftBasaltBlockDestroyedByPlayerProcedure {
-	public static void executeProcedure(Map<String, Object> dependencies) {
+	public static void execute(Map<String, Object> dependencies) {
 		if (dependencies.get("entity") == null) {
 			if (!dependencies.containsKey("entity"))
 				BasaltWalkerMod.LOGGER.warn("Failed to load dependency entity for procedure SoftBasaltBlockDestroyedByPlayer!");
@@ -44,11 +44,11 @@ public class SoftBasaltBlockDestroyedByPlayerProcedure {
 		double x = dependencies.get("x") instanceof Integer ? (int) dependencies.get("x") : (double) dependencies.get("x");
 		double y = dependencies.get("y") instanceof Integer ? (int) dependencies.get("y") : (double) dependencies.get("y");
 		double z = dependencies.get("z") instanceof Integer ? (int) dependencies.get("z") : (double) dependencies.get("z");
-		IWorld world = (IWorld) dependencies.get("world");
+		LevelAccessor world = (LevelAccessor) dependencies.get("world");
 		world.destroyBlock(new BlockPos((int) x, (int) y, (int) z), false);
-		if ((!((EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH,
-				((entity instanceof LivingEntity) ? ((LivingEntity) entity).getHeldItemMainhand() : ItemStack.EMPTY)) != 0)))) {
-			world.setBlockState(new BlockPos((int) x, (int) y, (int) z), Blocks.LAVA.getDefaultState(), 3);
+		if (!(EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH,
+				(entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY)) != 0)) {
+			world.setBlock(new BlockPos((int) x, (int) y, (int) z), Blocks.LAVA.defaultBlockState(), 3);
 		}
 	}
 }

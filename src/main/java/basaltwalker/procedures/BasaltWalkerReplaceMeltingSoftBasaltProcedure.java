@@ -4,50 +4,44 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.event.TickEvent;
 
-import net.minecraft.world.server.ServerWorld;
-import net.minecraft.world.World;
-import net.minecraft.world.IWorld;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.math.vector.Vector2f;
-import net.minecraft.item.ItemStack;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.command.ICommandSource;
-import net.minecraft.command.CommandSource;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.Vec2;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.CommandSource;
 
 import java.util.Map;
 import java.util.HashMap;
 
-import basaltwalker.enchantment.BasaltWalkerEnchantment;
+import basaltwalker.init.BasaltWalkerModEnchantments;
 
 import basaltwalker.BasaltWalkerMod;
 
+@Mod.EventBusSubscriber
 public class BasaltWalkerReplaceMeltingSoftBasaltProcedure {
-	@Mod.EventBusSubscriber
-	private static class GlobalTrigger {
-		@SubscribeEvent
-		public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
-			if (event.phase == TickEvent.Phase.END) {
-				Entity entity = event.player;
-				World world = entity.world;
-				double i = entity.getPosX();
-				double j = entity.getPosY();
-				double k = entity.getPosZ();
-				Map<String, Object> dependencies = new HashMap<>();
-				dependencies.put("x", i);
-				dependencies.put("y", j);
-				dependencies.put("z", k);
-				dependencies.put("world", world);
-				dependencies.put("entity", entity);
-				dependencies.put("event", event);
-				executeProcedure(dependencies);
-			}
+	@SubscribeEvent
+	public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+		if (event.phase == TickEvent.Phase.END) {
+			Entity entity = event.player;
+			Map<String, Object> dependencies = new HashMap<>();
+			dependencies.put("x", entity.getX());
+			dependencies.put("y", entity.getY());
+			dependencies.put("z", entity.getZ());
+			dependencies.put("world", entity.level);
+			dependencies.put("entity", entity);
+			dependencies.put("event", event);
+			execute(dependencies);
 		}
 	}
-	public static void executeProcedure(Map<String, Object> dependencies) {
+
+	public static void execute(Map<String, Object> dependencies) {
 		if (dependencies.get("entity") == null) {
 			if (!dependencies.containsKey("entity"))
 				BasaltWalkerMod.LOGGER.warn("Failed to load dependency entity for procedure BasaltWalkerReplaceMeltingSoftBasalt!");
@@ -77,17 +71,14 @@ public class BasaltWalkerReplaceMeltingSoftBasaltProcedure {
 		double x = dependencies.get("x") instanceof Integer ? (int) dependencies.get("x") : (double) dependencies.get("x");
 		double y = dependencies.get("y") instanceof Integer ? (int) dependencies.get("y") : (double) dependencies.get("y");
 		double z = dependencies.get("z") instanceof Integer ? (int) dependencies.get("z") : (double) dependencies.get("z");
-		IWorld world = (IWorld) dependencies.get("world");
-		if (((EnchantmentHelper.getEnchantmentLevel(BasaltWalkerEnchantment.enchantment,
-				((entity instanceof LivingEntity)
-						? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 0))
-						: ItemStack.EMPTY))) >= 1)) {
-			if (world instanceof ServerWorld) {
-				((World) world).getServer().getCommandManager().handleCommand(
-						new CommandSource(ICommandSource.DUMMY, new Vector3d(x, y, z), Vector2f.ZERO, (ServerWorld) world, 4, "",
-								new StringTextComponent(""), ((World) world).getServer(), null).withFeedbackDisabled(),
+		LevelAccessor world = (LevelAccessor) dependencies.get("world");
+		if (EnchantmentHelper.getItemEnchantmentLevel(BasaltWalkerModEnchantments.BASALT_WALKER,
+				(entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.FEET) : ItemStack.EMPTY)) >= 1) {
+			if (world instanceof ServerLevel _level)
+				_level.getServer().getCommands().performCommand(
+						new CommandSourceStack(CommandSource.NULL, new Vec3(x, y, z), Vec2.ZERO, _level, 4, "", new TextComponent(""),
+								_level.getServer(), null).withSuppressedOutput(),
 						"fill ~-1 ~-1 ~-1 ~1 ~-1 ~1 basalt_walker:soft_basalt replace basalt_walker:melting_soft_basalt_1");
-			}
 		}
 	}
 }
