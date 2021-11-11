@@ -358,6 +358,7 @@
     "license": "Creative Commons Attribution-NonCommercial 3.0",
     "disableForgeVersionCheck": true,
     "serverSideOnly": false,
+    "updateURL": "https://gitee.com/hashtag233/basalt-walker/raw/master/update.json",
     "modPicture": "logo",
     "requiredMods": [],
     "dependencies": [],
