@@ -2,10 +2,10 @@
 package basaltwalker.block;
 
 import net.minecraft.world.phys.HitResult;
-import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.EntityBlock;
@@ -20,10 +20,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.core.BlockPos;
 
 import java.util.Random;
-import java.util.List;
-import java.util.Collections;
-
-import com.google.common.collect.ImmutableMap;
 
 import basaltwalker.procedures.SoftBasaltUpdateTickProcedure;
 import basaltwalker.procedures.SoftBasaltBlockDestroyedByPlayerProcedure;
@@ -36,8 +32,7 @@ public class SoftBasaltBlock extends Block
 
 			EntityBlock {
 	public SoftBasaltBlock() {
-		super(Block.Properties.of(Material.STONE).sound(SoundType.STONE).strength(0.8f, 0.8f).lightLevel(s -> 0));
-		setRegistryName("soft_basalt");
+		super(BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.STONE).strength(0.8f).noDrops());
 	}
 
 	@Override
@@ -46,24 +41,15 @@ public class SoftBasaltBlock extends Block
 	}
 
 	@Override
-	public ItemStack getPickBlock(BlockState state, HitResult target, BlockGetter world, BlockPos pos, Player player) {
+	public ItemStack getCloneItemStack(BlockState state, HitResult target, BlockGetter world, BlockPos pos, Player player) {
 		return new ItemStack(Blocks.AIR);
-	}
-
-	@Override
-	public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
-		List<ItemStack> dropsOriginal = super.getDrops(state, builder);
-		if (!dropsOriginal.isEmpty())
-			return dropsOriginal;
-		return Collections.singletonList(new ItemStack(this, 0));
 	}
 
 	@Override
 	public void onPlace(BlockState blockstate, Level world, BlockPos pos, BlockState oldState, boolean moving) {
 		super.onPlace(blockstate, world, pos, oldState, moving);
-		world.getBlockTicks().scheduleTick(pos, this, 1);
-		SoftBasaltBlockAddedProcedure.execute(
-				ImmutableMap.<String, Object>builder().put("x", pos.getX()).put("y", pos.getY()).put("z", pos.getZ()).put("world", world).build());
+		world.scheduleTick(pos, this, 1);
+		SoftBasaltBlockAddedProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
 	}
 
 	@Override
@@ -73,15 +59,14 @@ public class SoftBasaltBlock extends Block
 		int y = pos.getY();
 		int z = pos.getZ();
 
-		SoftBasaltUpdateTickProcedure.execute(ImmutableMap.<String, Object>builder().put("x", x).put("y", y).put("z", z).put("world", world).build());
-		world.getBlockTicks().scheduleTick(pos, this, 1);
+		SoftBasaltUpdateTickProcedure.execute(world, x, y, z);
+		world.scheduleTick(pos, this, 1);
 	}
 
 	@Override
-	public boolean removedByPlayer(BlockState blockstate, Level world, BlockPos pos, Player entity, boolean willHarvest, FluidState fluid) {
-		boolean retval = super.removedByPlayer(blockstate, world, pos, entity, willHarvest, fluid);
-		SoftBasaltBlockDestroyedByPlayerProcedure.execute(ImmutableMap.<String, Object>builder().put("x", pos.getX()).put("y", pos.getY())
-				.put("z", pos.getZ()).put("world", world).put("entity", entity).build());
+	public boolean onDestroyedByPlayer(BlockState blockstate, Level world, BlockPos pos, Player entity, boolean willHarvest, FluidState fluid) {
+		boolean retval = super.onDestroyedByPlayer(blockstate, world, pos, entity, willHarvest, fluid);
+		SoftBasaltBlockDestroyedByPlayerProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ(), entity);
 		return retval;
 	}
 

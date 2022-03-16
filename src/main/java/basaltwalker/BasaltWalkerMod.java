@@ -16,10 +16,12 @@ package basaltwalker;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
-import net.minecraftforge.fmllegacy.network.simple.SimpleChannel;
-import net.minecraftforge.fmllegacy.network.NetworkRegistry;
-import net.minecraftforge.fmllegacy.network.NetworkEvent;
+import net.minecraftforge.network.simple.SimpleChannel;
+import net.minecraftforge.network.NetworkRegistry;
+import net.minecraftforge.network.NetworkEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.eventbus.api.IEventBus;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.FriendlyByteBuf;
@@ -27,6 +29,11 @@ import net.minecraft.network.FriendlyByteBuf;
 import java.util.function.Supplier;
 import java.util.function.Function;
 import java.util.function.BiConsumer;
+
+import basaltwalker.init.BasaltWalkerModItems;
+import basaltwalker.init.BasaltWalkerModEnchantments;
+import basaltwalker.init.BasaltWalkerModBlocks;
+import basaltwalker.init.BasaltWalkerModBlockEntities;
 
 @Mod("basalt_walker")
 public class BasaltWalkerMod {
@@ -38,6 +45,14 @@ public class BasaltWalkerMod {
 	private static int messageID = 0;
 
 	public BasaltWalkerMod() {
+
+		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+		BasaltWalkerModBlocks.REGISTRY.register(bus);
+		BasaltWalkerModItems.REGISTRY.register(bus);
+
+		BasaltWalkerModBlockEntities.REGISTRY.register(bus);
+
+		BasaltWalkerModEnchantments.REGISTRY.register(bus);
 
 	}
 
